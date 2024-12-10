@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>invitation to go out...</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f06, #f79d00);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            animation: fadeIn 2s ease-in-out;
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+        .button {
+            background: #ffffff;
+            color: #f06;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        .button:hover {
+            background: #f79d00;
+            color: #ffffff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .play-instruction {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        audio {
+            margin-top: 40px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        /* Animasi Fade In */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Media Query untuk tampilan handphone */
+        @media (max-width: 600px) {
+            .container {
+                align-items: flex-start;
+                justify-content: flex-start;
+            }
+
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            p {
+                font-size: 1.1rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .button {
+                font-size: 1rem;
+                padding: 12px 25px;
+                margin-bottom: 2rem;
+            }
+
+            .play-instruction {
+                font-size: 1rem;
+                margin-top: 25px;
+            }
+        }
+
+        /* Media Query untuk tampilan desktop */
+        @media (min-width: 601px) {
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .play-instruction {
+                margin-top: 30px;
+            }
+        }
+
+        /* Styling untuk elemen yang disembunyikan */
+        .hidden {
+            display: none;
+        }
+
+        /* Tambahan jarak antara kontrol musik dan tombol continue */
+        #continue-button-container {
+            margin-top: 30px; /* Menambahkan jarak lebih banyak antara kontrol musik dan tombol continue */
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Elemen kontrol audio dan instruksi yang hanya tampil pertama kali -->
+        <div id="audio-container">
+            <p class="play-instruction">Play dulu musiknya biar asik! 🎶</p>
+            <audio controls id="audio-player">
+                <source src="https://dl.dropboxusercontent.com/scl/fi/rvib77m5xj6zer2hss8ck/Adrian-Khalif-Tidak-Karuan.mp3?rlkey=srhzomuubgyq94t5aziaebq3b&st=38uuquhm" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+
+        <!-- Pesan dan tombol ajakan yang disembunyikan sampai tombol ditekan -->
+        <div id="message-container" class="hidden">
+            <h1>hi, caitt! 💩</h1>
+            <p>i just wanna ask if u're free tommorow? may i take ur time to go out somewhere if u want hehe?</p>
+            <a href="https://wa.me/6281318862118?text=sure,%20emang%20mau%20kemana??" target="_blank">
+                <button class="button">click if u want...</button>
+            </a>
+        </div>
+
+        <!-- Tombol untuk melanjutkan ke bagian pesan setelah menekan tombol play -->
+        <div id="continue-button-container">
+            <button class="button" onclick="showMessage()">continue</button>
+        </div>
+    </div>
+
+    <script>
+        // Menampilkan pesan dan tombol ajakan setelah tombol "Continue" ditekan
+        function showMessage() {
+            // Menyembunyikan kontrol musik dan instruksi
+            document.getElementById("audio-container").classList.add("hidden");
+
+            // Menyembunyikan tombol "Continue" setelah ditekan
+            document.getElementById("continue-button-container").style.display = "none";
+
+            // Menampilkan pesan dan tombol ajakan
+            document.getElementById("message-container").classList.remove("hidden");
+        }
+
+        // Menampilkan tombol "Continue" setelah audio diputar
+        document.getElementById("audio-player").onplay = function() {
+            document.getElementById("continue-button-container").style.display = "block";
+        };
+    </script>
+</body>
+</html>
